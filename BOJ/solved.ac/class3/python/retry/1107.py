@@ -6,33 +6,25 @@ https://www.acmicpc.net/problem/1107
 """
 import sys
 
-n = int(sys.stdin.readline().rstrip())
-m = int(sys.stdin.readline().rstrip())
+N = int(sys.stdin.readline().rstrip())
+M = int(sys.stdin.readline().rstrip())
 
-if m != 0:
-    disabled = set(map(int, sys.stdin.readline().rstrip().split()))
-else:
-    disabled = set()
+candidates = []
+btn = {i for i in range(0,10)}
+broken = {}
 
-candidate = []
-btn_set = {i for i in range(0, 10)}
+broken = set(map(int,sys.stdin.readline().rstrip().split()))
 
-def find(num):
-    for b in btn_set:
+btn -= broken
+
+def find(num: str):
+    for b in btn:
         temp = num + str(b)
-        candidate.append(len(temp) + abs(n-int(temp)))
-
+        candidates.append(len(temp) + abs(N-int(temp)))
         if len(temp) < 6:
             find(temp)
 
-# 고장난 버튼 빼기
-btn_set -= disabled
-
-# 단순히 + 혹은 - 만 누른 경우
-candidate.append(abs(n-100))
-
-# 자리수 구하기
-lenght = len(str(n))
+candidates.append(abs(N-100))
 find('')
 
-print(min(candidate))
+print(min(candidates))
