@@ -1,4 +1,4 @@
-// dp 사용(카데인 알고리즘), 정석은 divide-and-conquer 방식인 듯 하니 해당 풀이로도 풀어보자.
+// dp 사용(카데인 알고리즘)
 // https://leetcode.com/problems/maximum-subarray/description/?envType=study-plan&id=data-structure-i
 class Solution {
     public int maxSubArray(int[] nums) {
