@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/search-insert-position/?envType=study-plan&id=algorithm-i
 class Solution {
     public int searchInsert(int[] nums, int target) {
         int left = 0;
