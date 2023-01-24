@@ -1,6 +1,7 @@
 import java.util.*;
 
-class BOJ_17070 {
+//https://www.acmicpc.net/problem/17070
+class BOJ17070 {
 
     // 백트래킹으로 모든 경로를 전부 탐색
     // 대각선 이동시에 비어 있어야 하는 곳이 3군데인 점 주의
