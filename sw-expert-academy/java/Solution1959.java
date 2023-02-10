@@ -1,4 +1,3 @@
-// https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV15OZ4qAPICFAYD
 /////////////////////////////////////////////////////////////////////////////////////////////
 // 기본 제공코드는 임의 수정해도 관계 없습니다. 단, 입출력 포맷 주의
 // 아래 표준 입출력 예제 필요시 참고하세요.
@@ -26,15 +25,14 @@
 //System.out.println(var);		       				   // 문자열 1개 출력하는 예제
 //System.out.println(AB);		       				     // long 변수 1개 출력하는 예제
 /////////////////////////////////////////////////////////////////////////////////////////////
-import java.util.*;
+import java.util.Scanner;
 
 /*
    사용하는 클래스명이 Solution 이어야 하므로, 가급적 Solution.java 를 사용할 것을 권장합니다.
    이러한 상황에서도 동일하게 java Solution 명령으로 프로그램을 수행해볼 수 있습니다.
  */
-class Solution
+class Solution1959
 {
-    static int ans;
     public static void main(String args[]) throws Exception
     {
 		/*
@@ -52,55 +50,42 @@ class Solution
         Scanner sc = new Scanner(System.in);
         int T;
         T=sc.nextInt();
+        sc.nextLine();
 		/*
 		   여러 개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 		*/
 
         for(int test_case = 1; test_case <= T; test_case++)
         {
-            int N = sc.nextInt();
+            String[] size = sc.nextLine().split(" ");
+            String[] first = sc.nextLine().split(" ");
+            String[] second = sc.nextLine().split(" ");
 
-            ans = Integer.MAX_VALUE;
+            int difference = Math.abs(Integer.parseInt(size[0]) - Integer.parseInt(size[1]));
 
-            int[][] positions = new int[N+2][2]; // 처음이 회사, 마지막이 집
-            int[] order = new int[N+2]; // 순서
-            boolean[] visited = new boolean[N+2]; // 방문 여부
+            String[] bigger = null;
+            String[] smaller = null;
 
-            // 회사
-            positions[0][0] = sc.nextInt();
-            positions[0][1] = sc.nextInt();
 
-            //집
-            positions[N+1][0] = sc.nextInt();
-            positions[N+1][1] = sc.nextInt();
-
-            for(int i = 1; i <= N; i++) {
-                positions[i][0] = sc.nextInt();
-                positions[i][1] = sc.nextInt();
+            if(Integer.parseInt(size[0]) > Integer.parseInt(size[1])) {
+                bigger = first;
+                smaller = second;
+            } else {
+                bigger = second;
+                smaller = first;
             }
 
-            backTracking(0, N, 0, 0, positions, visited);
+            int ans = Integer.MIN_VALUE;
 
-            System.out.printf("#%d %d\n", test_case, ans);
+            int c = 0;
+            while(c <= difference) {
+                int temp = 0;
+                for (int i = 0; i < smaller.length; i++){
+                    temp += Integer.parseInt(bigger[c+i]) * Integer.parseInt(smaller[i]);
+                }
+                ans = Math.max(ans, temp);
+                c++;
+            }
         }
-    }
-
-    public static void backTracking(int cnt, int N, int prev, int moved, int[][] positions, boolean[] visited) {
-        // 집까지 전부 집계 완료
-        if(cnt == N) {
-            ans = Math.min(ans, moved + distance(positions[prev], positions[N+1]));
-            return;
-        }
-
-        for(int i = 1; i < N+1; i++) {
-            if(visited[i]) continue;
-            visited[i] = true;
-            backTracking(cnt+1, N, i,moved + distance(positions[prev], positions[i]), positions, visited);
-            visited[i] = false;
-        }
-    }
-
-    public static int distance(int[] from, int[] to) {
-        return Math.abs(from[0] - to[0]) + Math.abs(from[1] - to[1]);
     }
 }

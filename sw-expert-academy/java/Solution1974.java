@@ -1,4 +1,4 @@
-// https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5Pq-OKAVYDFAUq
+// https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5Psz16AYEDFAUq
 /////////////////////////////////////////////////////////////////////////////////////////////
 // 기본 제공코드는 임의 수정해도 관계 없습니다. 단, 입출력 포맷 주의
 // 아래 표준 입출력 예제 필요시 참고하세요.
@@ -32,7 +32,7 @@ import java.util.*;
    사용하는 클래스명이 Solution 이어야 하므로, 가급적 Solution.java 를 사용할 것을 권장합니다.
    이러한 상황에서도 동일하게 java Solution 명령으로 프로그램을 수행해볼 수 있습니다.
  */
-class Solution
+class Solution1974
 {
     public static void main(String args[]) throws Exception
     {
@@ -51,36 +51,47 @@ class Solution
         Scanner sc = new Scanner(System.in);
         int T;
         T=sc.nextInt();
+        sc.nextLine();
 		/*
 		   여러 개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 		*/
 
         for(int test_case = 1; test_case <= T; test_case++)
         {
-            int n = sc.nextInt();
-            sc.nextLine();
-            int[][] arr = new int[n][n];
-            for (int i = 0; i < n; i++) {
-                arr[i] = Arrays.stream(sc.nextLine().split(" "))
+            int[][] sudoku = new int[9][9];
+
+            for(int i = 0; i < 9;i++) {
+                int[] temp = Arrays.stream(sc.nextLine().split(" "))
                         .mapToInt(Integer::parseInt)
                         .toArray();
+
+                sudoku[i] = temp;
             }
 
-            System.out.printf("#%d\n", test_case);
-            for(int i = 0; i < n;i++) {
-                for(int j = 0; j < n; j++) {
-                    System.out.print(arr[n-1-j][i]);
+            int ans = 1;
+            valid:
+            for (int i = 0; i < 9; i++) {
+                Set<Integer> row = new HashSet<>();
+                Set<Integer> col = new HashSet<>();
+                Set<Integer> block = new HashSet<>();
+                int blockRow = 3*(i/3);
+                int blockCol = 3*(i%3);
+                for (int j = 0; j < 9; j++) {
+                    if(!row.add(sudoku[i][j])) {
+                        ans = 0;
+                        break valid;
+                    };
+                    if(!col.add(sudoku[j][i])) {
+                        ans = 0;
+                        break valid;
+                    }
+                    if(!block.add(sudoku[blockRow + j/3][blockCol + j%3])) {
+                        ans = 0;
+                        break valid;
+                    };
                 }
-                System.out.print(" ");
-                for(int j = 0; j < n; j++) {
-                    System.out.print(arr[n-1-i][n-1-j]);
-                }
-                System.out.print(" ");
-                for(int j = 0; j < n; j++) {
-                    System.out.print(arr[j][n-1-i]);
-                }
-                System.out.println();
             }
+            System.out.format("#%d %d\n", test_case, ans);
         }
     }
 }

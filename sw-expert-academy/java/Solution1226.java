@@ -1,4 +1,4 @@
-// https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AWAe7XSKfUUDFAUw
+// https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV14vXUqAGMCFAYD
 /////////////////////////////////////////////////////////////////////////////////////////////
 // 기본 제공코드는 임의 수정해도 관계 없습니다. 단, 입출력 포맷 주의
 // 아래 표준 입출력 예제 필요시 참고하세요.
@@ -32,71 +32,65 @@ import java.util.*;
    사용하는 클래스명이 Solution 이어야 하므로, 가급적 Solution.java 를 사용할 것을 권장합니다.
    이러한 상황에서도 동일하게 java Solution 명령으로 프로그램을 수행해볼 수 있습니다.
  */
-class Solution
+class Solution1226
 {
-
-    static int[] pow = new int[10]; // 2의 거듭 제곱
-    static int[] fac = new int[10]; // factorial
-    static int totalWeight = 0;
-    static int ans = 0;
-    static int N = 0;
-    static int[] weights;
-    static boolean[] visited;
-
-    static void init() {
-        pow[0] = 1;
-        fac[0] = 1;
-        for (int i = 1; i <= 9; i++) {
-            pow[i] = pow[i-1] * 2;
-            fac[i] = fac[i-1] * i;
-        }
-    }
+    static int[] dRow = new int[]{-1,1,0,0};// 위, 아래, 왼쪽, 오른쪽
+    static int[] dCol = new int[]{0,0,-1,1};// 위, 아래, 왼쪽, 오른쪽
 
     public static void main(String args[]) throws Exception
     {
-        init();
         Scanner sc = new Scanner(System.in);
         int T;
-        T=sc.nextInt();
+        T=10;
 		/*
 		   여러 개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 		*/
 
         for(int test_case = 1; test_case <= T; test_case++)
         {
-            N = sc.nextInt();
+            test_case = sc.nextInt();
             sc.nextLine();
-            weights = new int[N];
-            visited = new boolean[N];
-            totalWeight = 0;
-            ans = 0;
-
-            weights = Arrays.stream(sc.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-            for (int i = 0; i < N; i++) {
-                totalWeight += weights[i];
+            char[][] maze = new char[16][16];
+            boolean[][] visited = new boolean[16][16];
+            for(int i = 0; i < 16; i++) {
+                maze[i] = sc.nextLine().toCharArray();
             }
-            permutation(0,0,0, totalWeight);
 
-            System.out.printf("#%d %d\n", test_case, ans);
+            int startRow = 0, startCol = 0;
+            startFinder:
+            for (int r = 0; r < 16; r++) {
+                for(int c = 0; c < 16; c++) {
+                    if (maze[r][c] == '2') {
+                        startRow = r;
+                        startCol = c;
+                        break startFinder;
+                    }
+                }
+            }
+
+            System.out.printf("#%d %d\n", test_case, bfs(maze, startRow, startCol, visited));
         }
     }
 
-    public static void permutation(int idx, int leftSum, int rightSum, int remain) {
-        if (leftSum >= remain + rightSum) {
-            ans += pow[N-idx] * fac[N-idx];
-            return;
+    public static int bfs(char[][] maze, int startRow, int startCol, boolean[][] visited) {
+        Queue<int[]> queue = new LinkedList<>();
+        visited[startRow][startCol] = true;
+        queue.add(new int[]{startRow, startCol});
+
+        while(!queue.isEmpty()) {
+            int[] cur = queue.poll();
+
+            for(int i = 0; i < 4; i++) {
+                int nRow = cur[0] + dRow[i];
+                int nCol = cur[1] + dCol[i];
+                if (nRow >= 16 || nCol >= 16 || nRow < 0|| nCol < 0) continue;
+                if (visited[nRow][nCol]) continue;
+                if (maze[nRow][nCol] == '3') return 1;
+                if (maze[nRow][nCol] != '0') continue;
+                visited[nRow][nCol] = true;
+                queue.add(new int[]{nRow, nCol});
+            }
         }
-        if (idx == N) {
-            ans++;
-            return;
-        }
-        for(int i = 0; i < N; i++) {
-            if(visited[i]) continue;
-            visited[i] = true;
-            int thisWeight = weights[i];
-            permutation(idx + 1, leftSum + thisWeight, rightSum, remain - thisWeight);
-            if(rightSum + thisWeight <= leftSum) permutation(idx + 1, leftSum, rightSum + thisWeight, remain - thisWeight);
-            visited[i] = false;
-        }
+        return 0;
     }
 }

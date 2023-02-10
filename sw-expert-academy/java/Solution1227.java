@@ -1,4 +1,4 @@
-// https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV14vXUqAGMCFAYD
+// https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV14wL9KAGkCFAYD
 /////////////////////////////////////////////////////////////////////////////////////////////
 // 기본 제공코드는 임의 수정해도 관계 없습니다. 단, 입출력 포맷 주의
 // 아래 표준 입출력 예제 필요시 참고하세요.
@@ -32,7 +32,7 @@ import java.util.*;
    사용하는 클래스명이 Solution 이어야 하므로, 가급적 Solution.java 를 사용할 것을 권장합니다.
    이러한 상황에서도 동일하게 java Solution 명령으로 프로그램을 수행해볼 수 있습니다.
  */
-class Solution
+class Solution1227
 {
     static int[] dRow = new int[]{-1,1,0,0};// 위, 아래, 왼쪽, 오른쪽
     static int[] dCol = new int[]{0,0,-1,1};// 위, 아래, 왼쪽, 오른쪽
@@ -50,16 +50,16 @@ class Solution
         {
             test_case = sc.nextInt();
             sc.nextLine();
-            char[][] maze = new char[16][16];
-            boolean[][] visited = new boolean[16][16];
-            for(int i = 0; i < 16; i++) {
+            char[][] maze = new char[100][100];
+            boolean[][] visited = new boolean[100][100];
+            for(int i = 0; i < 100; i++) {
                 maze[i] = sc.nextLine().toCharArray();
             }
 
             int startRow = 0, startCol = 0;
             startFinder:
-            for (int r = 0; r < 16; r++) {
-                for(int c = 0; c < 16; c++) {
+            for (int r = 0; r < 100; r++) {
+                for(int c = 0; c < 100; c++) {
                     if (maze[r][c] == '2') {
                         startRow = r;
                         startCol = c;
@@ -83,7 +83,7 @@ class Solution
             for(int i = 0; i < 4; i++) {
                 int nRow = cur[0] + dRow[i];
                 int nCol = cur[1] + dCol[i];
-                if (nRow >= 16 || nCol >= 16 || nRow < 0|| nCol < 0) continue;
+                if (nRow >= 100 || nCol >= 100 || nRow < 0|| nCol < 0) continue;
                 if (visited[nRow][nCol]) continue;
                 if (maze[nRow][nCol] == '3') return 1;
                 if (maze[nRow][nCol] != '0') continue;

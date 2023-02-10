@@ -1,4 +1,4 @@
-// https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV15PTkqAPYCFAYD
+// https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV15QRX6APsCFAYD
 /////////////////////////////////////////////////////////////////////////////////////////////
 // 기본 제공코드는 임의 수정해도 관계 없습니다. 단, 입출력 포맷 주의
 // 아래 표준 입출력 예제 필요시 참고하세요.
@@ -32,9 +32,11 @@ import java.util.*;
    사용하는 클래스명이 Solution 이어야 하므로, 가급적 Solution.java 를 사용할 것을 권장합니다.
    이러한 상황에서도 동일하게 java Solution 명령으로 프로그램을 수행해볼 수 있습니다.
  */
-class Solution
+class Solution1249
 {
-    static Integer subTreeSize = 1;
+
+    final static int[] dRow = new int[]{0,0,1,-1};
+    final static int[] dCol = new int[]{1,-1,0,0};
 
     public static void main(String args[]) throws Exception
     {
@@ -47,58 +49,37 @@ class Solution
 
         for(int test_case = 1; test_case <= T; test_case++)
         {
-            subTreeSize = 1;
-            final int V = sc.nextInt(), E = sc.nextInt(), ONE = sc.nextInt(), TWO = sc.nextInt();
+            int size = sc.nextInt();
             sc.nextLine();
-            int[][] tree = new int[V + 1][4]; // 자식1, 자식2, 부모, 깊이
-            int[] temp = Arrays.stream(sc.nextLine().split(" ")).
-                    mapToInt(Integer::parseInt).toArray();
-            for(int i = 0; i < temp.length; i += 2) {
-                int p = temp[i], c = temp[i+1];
-                if (tree[p][0] == 0) tree[p][0] = c;
-                else tree[p][1] = c;
-                tree[c][2] = p;
+            int[][] graph = new int[size][];
+            int[][] counter = new int[size][size];
+            boolean[][] visited = new boolean[size][size];
+
+            for(int i = 0; i < size; i++) {
+                graph[i] = sc.nextLine().chars().map(Character::getNumericValue).toArray();
             }
-            // 깊이 구하기
-            boolean[] visited = new boolean[V + 1];
-            bfs(1, tree, 1, visited);
-            int commonAncestor =  lca(ONE, TWO, tree);
 
-            findSubTreeSize(commonAncestor, tree);
-
-            System.out.printf("#%d %d %d\n", test_case, commonAncestor, subTreeSize);
+            bfs(0,0,graph, counter, visited);
+            System.out.printf("#%d %d\n", test_case, counter[size-1][size-1]);
         }
     }
 
-    public static void bfs(int r, int[][] tree, int depth, boolean[] visited) {
-        visited[r] = true;
-        tree[r][3] = depth;
-        for(int i = 0; i < 2; i++) {
-            if (tree[r][i] == 0) continue;
-            if (visited[tree[r][i]]) continue;
-            bfs(tree[r][i], tree, depth + 1, visited);
-        }
-    }
-    public static int lca(int one, int two, int[][] tree) {
-        // 깊이 먼저 맞추기
-        while(tree[one][3] != tree[two][3]) {
-            if (tree[one][3] > tree[two][3]) one = tree[one][2];
-            else two = tree[two][2];
-        }
-        // 공통 부모 노드 찾기
-        while (one != two) {
-            one = tree[one][2];
-            two = tree[two][2];
-        }
-
-        return one;
-    }
-
-    public static void findSubTreeSize(int r, int[][] tree) {
-        for(int i = 0; i < 2; i++) {
-            if (tree[r][i] != 0) {
-                subTreeSize++;
-                findSubTreeSize(tree[r][i], tree);
+    public static void bfs(int startRow, int startCol, int[][] graph, int[][] counter, boolean[][] visited) {
+        Queue<int[]> queue = new LinkedList<>();
+        visited[startRow][startCol] = true;
+        counter[startRow][startCol] = 0;
+        queue.add(new int[]{startRow, startCol});
+        while(!queue.isEmpty()) {
+            int[] cur = queue.poll();
+            int curRow = cur[0], curCol = cur[1];
+            for (int i = 0; i < 4; i++) {
+                int nRow = curRow + dRow[i], nCol = curCol + dCol[i];
+                if (nRow >= graph.length || nCol >= graph.length || nRow < 0 || nCol < 0) continue;
+                if (!visited[nRow][nCol] || counter[nRow][nCol] > counter[curRow][curCol] + graph[nRow][nCol]) {
+                    visited[nRow][nCol] = true;
+                    counter[nRow][nCol] = counter[curRow][curCol] + graph[nRow][nCol];
+                    queue.add(new int[]{nRow, nCol});
+                }
             }
         }
     }

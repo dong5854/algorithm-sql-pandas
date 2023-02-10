@@ -1,4 +1,4 @@
-// https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5Psz16AYEDFAUq
+// https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV15OZ4qAPICFAYD
 /////////////////////////////////////////////////////////////////////////////////////////////
 // 기본 제공코드는 임의 수정해도 관계 없습니다. 단, 입출력 포맷 주의
 // 아래 표준 입출력 예제 필요시 참고하세요.
@@ -32,8 +32,9 @@ import java.util.*;
    사용하는 클래스명이 Solution 이어야 하므로, 가급적 Solution.java 를 사용할 것을 권장합니다.
    이러한 상황에서도 동일하게 java Solution 명령으로 프로그램을 수행해볼 수 있습니다.
  */
-class Solution
+class Solution1247
 {
+    static int ans;
     public static void main(String args[]) throws Exception
     {
 		/*
@@ -51,47 +52,55 @@ class Solution
         Scanner sc = new Scanner(System.in);
         int T;
         T=sc.nextInt();
-        sc.nextLine();
 		/*
 		   여러 개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 		*/
 
         for(int test_case = 1; test_case <= T; test_case++)
         {
-            int[][] sudoku = new int[9][9];
+            int N = sc.nextInt();
 
-            for(int i = 0; i < 9;i++) {
-                int[] temp = Arrays.stream(sc.nextLine().split(" "))
-                        .mapToInt(Integer::parseInt)
-                        .toArray();
+            ans = Integer.MAX_VALUE;
 
-                sudoku[i] = temp;
+            int[][] positions = new int[N+2][2]; // 처음이 회사, 마지막이 집
+            int[] order = new int[N+2]; // 순서
+            boolean[] visited = new boolean[N+2]; // 방문 여부
+
+            // 회사
+            positions[0][0] = sc.nextInt();
+            positions[0][1] = sc.nextInt();
+
+            //집
+            positions[N+1][0] = sc.nextInt();
+            positions[N+1][1] = sc.nextInt();
+
+            for(int i = 1; i <= N; i++) {
+                positions[i][0] = sc.nextInt();
+                positions[i][1] = sc.nextInt();
             }
 
-            int ans = 1;
-            valid:
-            for (int i = 0; i < 9; i++) {
-                Set<Integer> row = new HashSet<>();
-                Set<Integer> col = new HashSet<>();
-                Set<Integer> block = new HashSet<>();
-                int blockRow = 3*(i/3);
-                int blockCol = 3*(i%3);
-                for (int j = 0; j < 9; j++) {
-                    if(!row.add(sudoku[i][j])) {
-                        ans = 0;
-                        break valid;
-                    };
-                    if(!col.add(sudoku[j][i])) {
-                        ans = 0;
-                        break valid;
-                    }
-                    if(!block.add(sudoku[blockRow + j/3][blockCol + j%3])) {
-                        ans = 0;
-                        break valid;
-                    };
-                }
-            }
-            System.out.format("#%d %d\n", test_case, ans);
+            backTracking(0, N, 0, 0, positions, visited);
+
+            System.out.printf("#%d %d\n", test_case, ans);
         }
+    }
+
+    public static void backTracking(int cnt, int N, int prev, int moved, int[][] positions, boolean[] visited) {
+        // 집까지 전부 집계 완료
+        if(cnt == N) {
+            ans = Math.min(ans, moved + distance(positions[prev], positions[N+1]));
+            return;
+        }
+
+        for(int i = 1; i < N+1; i++) {
+            if(visited[i]) continue;
+            visited[i] = true;
+            backTracking(cnt+1, N, i,moved + distance(positions[prev], positions[i]), positions, visited);
+            visited[i] = false;
+        }
+    }
+
+    public static int distance(int[] from, int[] to) {
+        return Math.abs(from[0] - to[0]) + Math.abs(from[1] - to[1]);
     }
 }
