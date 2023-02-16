@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-class Main {
+class BOJ1148 {
 	
 	static List<Integer> list;
 	static int N, K;
