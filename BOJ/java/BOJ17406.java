@@ -1,94 +1,98 @@
 import java.io.*;
 import java.util.*;
 
+class BOJ17406 {
 
-class Main {
-
-	private static int N, M, K, result=Integer.MAX_VALUE;
-	private static int [][]arr, copy;
-	private static int [] r, c, s;
+	static int[][] A;
+	static int[][] commands;
+	static int[] commandsOrder;
+	static boolean[] v;
+	// 하, 우, 상, 좌
+	static int[] dr = {1,0,-1,0};
+	static int[] dc = {0,1,0,-1};
+	static int N, M, K;
+	static int ans;
 
 	public static void main(String[] args) throws Exception {
 
-		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st=new StringTokenizer(br.readLine());
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
+		K = Integer.parseInt(st.nextToken());
 
-		N=Integer.parseInt(st.nextToken());
-		M=Integer.parseInt(st.nextToken());
-		K=Integer.parseInt(st.nextToken());
+		A = new int[N+1][M+1];
+		commands = new int[K][];
+		commandsOrder = new int[K];
+		v= new boolean[K];
+		ans = Integer.MAX_VALUE;
 
-		arr=new int[N+1][M+1];
-		copy=new int[N+1][M+1];
-		r=new int[K];
-		c=new int[K];
-		s=new int[K];
-
-		for(int r=1;r<=N;r++) {
-			st=new StringTokenizer(br.readLine());
-			for(int c=1;c<=M;c++) {
-				arr[r][c]=Integer.parseInt(st.nextToken());
+		for (int r = 1; r <= N; r++) {
+			st = new StringTokenizer(br.readLine(), " ");
+			for (int c = 1; c <= M; c++) {
+				A[r][c] = Integer.parseInt(st.nextToken());
 			}
 		}
 
-		for(int i=0;i<K;i++) {
-			st=new StringTokenizer(br.readLine());
-			r[i]=Integer.parseInt(st.nextToken());
-			c[i]=Integer.parseInt(st.nextToken());
-			s[i]=Integer.parseInt(st.nextToken());
+		for (int i = 0; i < K; i++) {
+			st = new StringTokenizer(br.readLine(), " ");
+			commands[i] = new int[] {Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())};
 		}
-		permutation(K, new int[K], new boolean[K]);
-		System.out.println(result);
+
+		perm(0);
+		System.out.println(ans);
 	}
 
-	public static void permutation(int cnt, int []choosed, boolean[]visited) {
-		if(cnt==0) {
-			for(int i=1;i<=N;i++) {
-				copy[i]= Arrays.copyOf(arr[i], arr[i].length);
-			}
-			for(int i=0;i<choosed.length;i++) {
-				int x=r[choosed[i]]-s[choosed[i]];
-				int y=c[choosed[i]]-s[choosed[i]];
-
-				for(int d=0;d<=s[choosed[i]];d++) {
-					rotate(x+d,y+d,s[choosed[i]]-d);
+	static void spin(int[][] copy, int r, int c, int s) {
+		int row = r - s; int col = c - s;
+		while (s > 0) {
+			int temp = copy[row][col];
+			int cnt = s * 2;
+			for (int i = 0; i < 4; i++) {
+				int ct = 0;
+				while (ct < cnt) {
+					int nr = row + dr[i]; int nc = col + dc[i];
+					copy[row][col] = copy[nr][nc];
+					row = nr; col = nc;
+					ct++;
 				}
+			}
+			copy[row][col+1] = temp;
+			row = row + 1; col = col + 1;
+			s--;
+		}
+	}
 
+	static void findMin(int[][] copy) {
+		for(int r = 1; r <= N; r++) {
+			int sum = 0;
+			for(int c = 1; c <= M; c++) {
+				sum += copy[r][c];
 			}
-			for(int x1=1;x1<=N;x1++) {
-				int tmp=0;
-				for(int y1=1;y1<=M;y1++) {
-					tmp+=copy[x1][y1];
+			ans = Math.min(ans, sum);
+		}
+	}
+
+	static void perm(int cnt) {
+		if(cnt == K) {
+			int[][] copy = new int[N+1][M+1];
+			for(int r = 1; r <= N; r++) {
+				for(int c = 1; c <= M; c++) {
+					copy[r][c] = A[r][c];
 				}
-				result=Math.min(result, tmp);
 			}
+			for (int idx:commandsOrder) {
+				spin(copy, commands[idx][0],commands[idx][1],commands[idx][2]);
+			}
+			findMin(copy);
 			return;
 		}
-
-		for(int i=0;i<K;i++) {
-			if (visited[i]) continue;
-			visited[i]=true;
-			choosed[choosed.length-cnt]=i;
-			permutation(cnt-1, choosed, visited);
-			visited[i]=false;
+		for (int i = 0; i < K; i++) {
+			if (v[i]) continue;
+			v[i] = true;
+			commandsOrder[cnt] = i;
+			perm(cnt+1);
+			v[i]=false;
 		}
-	}
-
-	public static void rotate(int R, int C, int S) {
-		if(S==0) return;
-		int keep=copy[R][C];
-		for(int r=R+1;r<=R+2*S;r++) {
-			copy[r-1][C]=copy[r][C];
-		}
-
-		for(int c=C+1;c<=C+2*S;c++) {
-			copy[R+2*S][c-1]=copy[R+2*S][c];
-		}
-		for(int r=R+2*S-1;r>=R;r--) {
-			copy[r+1][C+2*S]=copy[r][C+2*S];
-		}
-		for(int c=C+2*S-1;c>=C+1;c--) {
-			copy[R][c+1]=copy[R][c];
-		}
-		copy[R][C+1]=keep;
 	}
 }
