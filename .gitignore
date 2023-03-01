@@ -9,3 +9,6 @@
 
 # java
 out
+*.class
+
+*.iml
