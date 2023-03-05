@@ -10,8 +10,8 @@ public class LISBinarySearchUtil {
     // 6 로 끝나는 기리 3의 부분 증가 수열이 있다. [3,5,6]
     public static void main(String[] args) {
         lis[0] = arr[0];
-        int j = 0; int i = 1;
-        while (i < n) {
+        int j = 0;
+        for (int i = 1; i < n; i++) {
             if (lis[j] < arr[i]) {
                 lis[j+1] = arr[i];
                 j++;
@@ -19,8 +19,11 @@ public class LISBinarySearchUtil {
                 int idx = ~Arrays.binarySearch(lis, 0,j,arr[i]); // 비트 반전을 하면 들어갈 자리가 나온다.
                 lis[idx] = arr[i];
             }
-            i++;
         }
         System.out.println(Arrays.toString(lis));
+        System.out.println("LIS 의 최대 길이 " + (j+1));
+        for (int i = 0; i <= j; i++) {
+            System.out.println(lis[i] + "로 끝나는 길이 " + i + "의 LIS 가 존재");
+        }
     }
 }
