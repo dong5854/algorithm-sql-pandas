@@ -30,7 +30,7 @@ public class BOJ12865 {
 		for (int n = 1; n <= N; n++) {
 			for (int cap = 1; cap <= K; cap++) {
 				if (weights[n] > cap) {	// 물건이 들어가지 않으면,
-					dp[n][cap] = dp[n-1][cap];	// 전에꺼 그대로 가져온다~
+					dp[n][cap] = dp[n-1][cap];	// 전에꺼 그대로 가져온다.
 				} else {	// 물건이 들어가면,
 					 // 이 물건을 넣었들 때랑 안넣었을 때 중 더 가치가 높은걸로 고른다.
 					dp[n][cap] = Math.max(dp[n-1][cap], dp[n-1][cap-weights[n]] + values[n]); 
