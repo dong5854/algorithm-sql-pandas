@@ -79,7 +79,7 @@ public class Kruskal {
         while (!pq.isEmpty()) {
             kruskal.union(pq.poll());
             if (kruskal.done()) {
-                System.out.println(kruskal.totalCost);
+                System.out.println(kruskal.totalCost);  // 1-3, 2-3, 3-4, 4-5, 4-6 => 23
                 return;
             }
         }
