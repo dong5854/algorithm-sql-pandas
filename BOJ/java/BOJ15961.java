@@ -9,15 +9,16 @@ public class BOJ15961 {
 
   public static void main(String[] args) throws Exception {
     getInput();
+    int ans = 0;
     int type = 1; // 쿠폰으로 하나는 먹어봄
     for (int i = 0; i < k; i++) {
       if (sushiType[sushi[i]] == 0) {
         type++;
       }
       sushiType[sushi[i]]++;
+      ans = Math.max(ans, type);
     }
 
-    int ans = 0;
     int idx = 0;
     while (++idx < N) {
       // 초밥 빼기
