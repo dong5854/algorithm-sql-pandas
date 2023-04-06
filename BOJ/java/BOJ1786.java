@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main_bj_1786_찾기_서울_20반_이동영 {
+public class BOJ1786 {
 
   public static void main(String[] args) throws Exception {
 
