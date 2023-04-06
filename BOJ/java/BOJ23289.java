@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-import javax.naming.directory.SearchControls;
-
 class BOJ23289 {
 
   // 0 , 우, 좌, 위, 아래
