@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main_bj_2458_키순서_서울_20반_이동영 {
+public class BOJ2458 {
 
   static final int INF = Integer.MAX_VALUE / 2;
 
