@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-class Solution_탈주범검거_서울_20반_이동영 {
+class Solution탈주범검거 {
 
 	// 0 , 우, 좌, 하, 상
 	static final int[] dr = { 0, 0, 0, 1, -1 };
