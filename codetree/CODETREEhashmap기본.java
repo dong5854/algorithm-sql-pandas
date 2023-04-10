@@ -9,6 +9,7 @@ public class CODETREEhashmap기본 {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     n = Integer.parseInt(br.readLine());
     Map<Integer, Integer> map = new HashMap<>();
+
     for (int i = 0; i < n; i++) {
       StringTokenizer st = new StringTokenizer(br.readLine(), " ");
       String command = st.nextToken();
@@ -17,6 +18,7 @@ public class CODETREEhashmap기본 {
         int val = Integer.parseInt(st.nextToken());
         map.put(key, val);
       }
+
       if (command.equals("find")) {
         int key = Integer.parseInt(st.nextToken());
         if (map.containsKey(key)) {
