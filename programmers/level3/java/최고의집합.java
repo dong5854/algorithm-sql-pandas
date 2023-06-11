@@ -1,15 +1,19 @@
-def solution(n, s):
-    answer = []
-    # 없는 경우
-    if s < n:
-        return [-1]
-    
-    val = s // n
-    leftover = s % n
-    
-    answer = [val for _ in range(n)]
-    
-    for i in range(1, leftover+1):
-        answer[n-i] += 1
-    
-    return answer
+import java.util.*;
+
+class Solution {
+    public int[] solution(int n, int s) {
+        if(n > s) {
+            return new int[]{-1};
+        }
+        int[] answer = new int[n];
+        for(int i=0; i<answer.length; i++) {
+            answer[i] = s/n;
+        }
+
+        for(int i=0; i<s%n; i++) {
+            answer[i] ++;
+        }
+        Arrays.sort(answer);
+        return answer;
+    }
+}
