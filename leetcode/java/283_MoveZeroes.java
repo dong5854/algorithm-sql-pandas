@@ -33,3 +33,21 @@ class Solution {
         }
     }
 }
+
+// 큐를 사용하는 방식
+// class Solution {
+//     public void moveZeroes(int[] nums) {
+//         ArrayDeque<Integer> q = new ArrayDeque<>();
+//         for (int i = 0; i < nums.length; i++) {
+//             if (nums[i] != 0) q.add(nums[i]);
+//         }
+
+//         for (int i = 0; i < nums.length; i++) {
+//             if (!q.isEmpty()) {
+//                 nums[i] = q.poll();  
+//             } else {
+//                 nums[i] = 0;
+//             }
+//         }
+//     }
+// }
