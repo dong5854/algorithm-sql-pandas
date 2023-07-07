@@ -23,3 +23,26 @@ class Solution {
         return ans;
     }
 }
+
+/**
+ * leetcode에 공개되어있는 가장 간단한 코드
+ * https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/?envType=study-plan-v2&envId=leetcode-75
+ */
+// class Solution {
+//     public int longestOnes(int[] nums, int k) {
+//         int start=0;
+//         int end=0;
+//         int zeros=0;
+//         while(end<nums.length){
+//             if(nums[end++] == 0){
+//                 zeros++;
+//             }
+//             if(zeros>k){
+//                 if(nums[start++] == 0){
+//                     zeros--;
+//                 }
+//             }
+//         }
+//         return end-start;
+//     }
+// }
