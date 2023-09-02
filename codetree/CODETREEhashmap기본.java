@@ -34,3 +34,38 @@ public class CODETREEhashmap기본 {
     }
   }
 }
+
+/**
+ * 2023-09-03 다시
+ */
+// import java.io.*;
+// import java.util.*;
+
+// public class Main {
+//     public static void main(String[] args) throws Exception {
+//         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//         HashMap<String, String> map = new HashMap<>();
+//         StringBuilder sb = new StringBuilder();
+//         int tc = Integer.parseInt(br.readLine()); 
+//         for (int t = 0; t < tc; t++) {
+//             String[] line = br.readLine().split(" ");
+//             switch (line[0]) {
+//                 case "add":
+//                     map.put(line[1], line[2]);
+//                     break;
+//                 case "find":
+//                     if (map.containsKey(line[1])) {
+//                         sb.append(map.get(line[1]));
+//                     } else {
+//                         sb.append("None");
+//                     }
+//                     sb.append("\n");
+//                     break;
+//                 case "remove":
+//                     map.remove(line[1]);
+//             }
+//         }
+//         System.out.println(sb);
+//         br.close();
+//     }
+// }
