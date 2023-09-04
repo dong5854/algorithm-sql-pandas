@@ -51,3 +51,38 @@ public class CODETREE순서를바꾸었을때같은단어그룹화하기 {
     br.close();
   }
 }
+/**
+ * 2021-09-04
+ */
+// import java.util.*;
+// import java.io.*;
+
+// public class Main {
+//     public static void main(String[] args) throws Exception {
+//         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//         int n = Integer.parseInt(br.readLine());
+//         Map<String, Integer> map = new HashMap<>();
+//         for (int i = 0; i < n; i++) {
+//             List<Character> list = new ArrayList<>();
+//             String word = br.readLine();
+//             for (int c = 0; c < word.length(); c++) {
+//                 list.add(word.charAt(c));
+//             }
+//             Collections.sort(list);
+//             StringBuilder sb = new StringBuilder();
+//             for (char c : list) {
+//                 sb.append(c);
+//             }
+//             map.put(sb.toString(), map.getOrDefault(sb.toString(), 0) + 1);
+//         }
+
+//         int ans = 0;
+//         for (int val : map.values()) {
+//             ans = Math.max(ans, val);
+//         }
+
+//         System.out.println(ans);
+
+//         br.close();
+//     }
+// }
