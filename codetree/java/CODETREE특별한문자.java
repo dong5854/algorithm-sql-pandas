@@ -25,3 +25,28 @@ public class CODETREE특별한문자 {
     System.out.println("None");
   }
 }
+/**
+ * 2021-05-21 다시풀기
+ */
+// import java.io.*;
+// import java.util.*;
+
+// public class Main {
+//     public static void main(String[] args) throws Exception {
+//         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//         String word = br.readLine();
+
+//         Map<Character, Integer> map = new HashMap<>();
+//         for (int i = 0; i < word.length(); i++) {
+//             map.put(word.charAt(i), map.getOrDefault(word.charAt(i), 0) + 1);
+//         }
+//         br.close();
+//         for (int i = 0; i < word.length(); i++) {
+//             if (map.get(word.charAt(i)) == 1) {
+//                 System.out.println(word.charAt(i));
+//                 return;
+//             }
+//         }
+//         System.out.println("None");
+//     }
+// }
