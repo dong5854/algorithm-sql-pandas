@@ -22,3 +22,29 @@ public class CODETREE단어장 {
     br.close();
   }
 }
+/**
+ * 2023-09-05
+ */
+// import java.util.*;
+// import java.io.*;
+
+// public class Main {
+//     public static void main(String[] args) throws Exception {
+//         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//         Map<String, Integer> map = new TreeMap<>();
+//         int n = Integer.parseInt(br.readLine());
+//         for (int i = 0; i < n; i++) {
+//             String word = br.readLine();
+//             map.put(word, map.getOrDefault(word, 0) + 1);
+//         }
+
+//         StringBuilder sb = new StringBuilder();
+//         for (String key : map.keySet()) {
+//             sb.append(key).append(" ").append(map.get(key)).append("\n");
+//         }
+
+//         System.out.println(sb);
+
+//         br.close();
+//     }
+// }
