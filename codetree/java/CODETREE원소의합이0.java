@@ -62,3 +62,44 @@ public class CODETREE원소의합이0 {
     br.close();
   }
 }
+/**
+ * 2023-09-05 다시풀기
+ */
+// import java.util.*;
+// import java.util.stream.*;
+// import java.io.*;
+
+// public class Main {
+//     public static void main(String[] args) throws Exception {
+//         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//         int n = Integer.parseInt(br.readLine());
+
+//         Map<Integer, Integer> abMap = new HashMap<>();
+//         Map<Integer, Integer> cdMap = new HashMap<>();
+
+//         int[] A = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+//         int[] B = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+//         int[] C = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+//         int[] D = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+
+//         for (int i = 0; i < n; i++) {
+//             for (int j = 0; j < n; j++) {
+//                 int abSum = A[i] + B[j];
+//                 int cdSum = C[i] + D[j];
+//                 abMap.put(abSum, abMap.getOrDefault(abSum, 0) + 1);
+//                 cdMap.put(cdSum, cdMap.getOrDefault(cdSum, 0) + 1);
+//             }
+//         }
+
+//         int ans = 0;
+//         for (int num : abMap.keySet()) {
+//             if (cdMap.containsKey(-num)) {
+//                 ans += abMap.get(num) * cdMap.get(-num);
+//             }
+//         }
+
+//         System.out.println(ans);
+
+//         br.close();
+//     }
+// }
