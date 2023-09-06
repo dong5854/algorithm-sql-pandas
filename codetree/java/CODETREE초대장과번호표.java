@@ -65,3 +65,54 @@ public class CODETREE초대장과번호표 {
     br.close();
   }
 }
+/**
+ * 2023-09-07
+ */
+// import java.io.*;
+// import java.util.*;
+// import java.util.stream.*;
+
+// public class Main {
+
+//     static int N;
+//     static int G;
+//     static List<List<Integer>> groups;
+//     static Set<Integer> ticketHolders;
+
+//     public static void main(String[] args) throws Exception {
+//         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+//         N = Integer.parseInt(st.nextToken());
+//         G = Integer.parseInt(st.nextToken());
+//         groups = new ArrayList<>();
+//         ticketHolders = new HashSet<>();
+//         ticketHolders.add(1);
+
+//         for (int i = 0; i < G; i++) {
+//             String[] arr = br.readLine().split(" ");
+//             groups.add(Arrays.stream(arr, 1, arr.length).
+//             map(Integer::parseInt).
+//             collect(Collectors.toCollection(ArrayList::new)));
+//         }
+
+//         boolean refreshed = true;
+//         while (refreshed) {
+//             refreshed = false;
+//             for (List<Integer> group : groups) {
+//                 int holders = 0;
+//                 int notholder = 0;
+//             for (int member : group) {
+//                 if (ticketHolders.contains(member)) holders++;
+//                 else notholder = member;
+//             }
+//             if (group.size() == holders + 1) {
+//                 refreshed = true;
+//                 ticketHolders.add(notholder);
+//             }
+//            }
+//         }
+
+//         System.out.println(ticketHolders.size());
+//         br.close();
+//     }
+// }
