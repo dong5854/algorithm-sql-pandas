@@ -26,3 +26,32 @@ public class CODETREE정수찾기 {
     br.close();
   }
 }
+/**
+ * 2023-09-05
+ */
+// import java.io.*;
+// import java.util.*;
+// import java.util.stream.*;
+
+// public class Main {
+//     public static void main(String[] args) throws Exception {
+//         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//         br.readLine();
+//         Set<Integer> set = Arrays.stream(br.readLine().split(" ")).
+//                             map(Integer::parseInt).
+//                             collect(Collectors.toCollection(HashSet::new));
+//         br.readLine();
+
+//         StringBuilder sb = new StringBuilder();
+//         Arrays.stream(br.readLine().split(" ")).
+//             map(Integer::parseInt).
+//             forEach(x -> {
+//                 if (set.contains(x)) sb.append(1).append("\n");
+//                 else sb.append(0).append("\n");
+//             });
+
+//         System.out.println(sb);
+
+//         br.close();
+//     }
+// }
