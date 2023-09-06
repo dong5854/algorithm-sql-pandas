@@ -68,3 +68,68 @@ public class CODETREEC_TAG {
     }
   }
 }
+/**
+ * 2023-09-05
+ */
+// import java.io.*;
+// import java.util.*;
+
+// public class Main {
+
+//     static int N, M;
+//     static List<String> groupOne = new ArrayList<>();
+//     static List<String> groupTwo = new ArrayList<>();
+
+//     public static boolean valid(int x, int y, int z) {
+//         Set<String> set = new HashSet<>();
+
+//         // groupOne
+//         for (int i = 0; i < N; i++) {
+//             StringBuilder sb = new StringBuilder();
+//             sb.append(groupOne.get(i).charAt(x));
+//             sb.append(groupOne.get(i).charAt(y));
+//             sb.append(groupOne.get(i).charAt(z));
+//             set.add(sb.toString());
+//         }
+
+//         // groupTwo
+//         for (int i = 0; i < N; i++) {
+//             StringBuilder sb = new StringBuilder();
+//             sb.append(groupTwo.get(i).charAt(x));
+//             sb.append(groupTwo.get(i).charAt(y));
+//             sb.append(groupTwo.get(i).charAt(z));
+//             if (set.contains(sb.toString())) return false;
+//         }
+
+//         return true;
+//     }
+
+//     public static void main(String[] args) throws Exception {
+//         int ans = 0;
+
+//         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+//         N = Integer.parseInt(st.nextToken());
+//         M = Integer.parseInt(st.nextToken());
+
+//         for (int i = 0; i < N; i++) {
+//             groupOne.add(br.readLine());
+//         }
+
+//         for (int i = 0; i < N; i++) {
+//             groupTwo.add(br.readLine());
+//         }
+
+//         for (int i = 0; i < M; i++) {
+//             for (int j = i + 1; j < M; j++) {
+//                 for (int k = j + 1; k < M; k++) {
+//                    if (valid(i, j, k)) ans++; 
+//                 }
+//             }
+//         }
+
+//         System.out.println(ans);
+
+//         br.close();
+//     }
+// }
