@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class CODETREE_구간트리의합 {
+public class CODETREE_구간크기의합 {
 
     static int N;
 
