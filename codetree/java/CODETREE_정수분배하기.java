@@ -1,51 +1,46 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-public class CODETREE_정수분배하기 {    
-    public static final int MAX_NUM = 100000;
-    public static final int MAX_N = 10000;
-    
-    // 변수 선언
-    public static int n, m;
-    public static int[] arr = new int[MAX_N];
-    
-    // 숫자 k를 만든다고 헀을 때
-    // 블럭을 m개 만들 수 있을지 판단합니다.
-    public static boolean isPossible(int k) {
-        // 만들 수 있는 블럭의 수를 계산합니다.
-        int cnt = 0;
-        for(int i = 0; i < n; i++) {
-            // arr[i] / k개 만큼의
-            // 블럭을 만들어 줄 수 있습니다.
-            cnt += arr[i] / k;
+public class CODETREE_정수분배하기 {
+
+    static int n;
+    static int m;
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+
+        int[] list = new int[n];
+        
+        int s = 0;
+        int e = Integer.MAX_VALUE;
+        for (int i = 0; i < n; i++) {
+            list[i] = Integer.parseInt(br.readLine());
+            e = Math.max(list[i], e);
         }
-    
-        // 만들 수 있는 블럭의 수가 m개 이상이라면 true
-        // 아니라면 불가능한 것이므로 false를 반환합니다.
-        return cnt >= m;
-    }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        // 입력
-        n = sc.nextInt();
-        m = sc.nextInt();
-        for(int i = 0; i < n; i++)
-            arr[i] = sc.nextInt();
-        
-        int left = 1;                          // 답이 될 수 있는 가장 작은 숫자 값을 설정합니다.
-        int right = MAX_NUM;                   // 답이 될 수 있는  가장 큰 숫자 값을 설정합니다.
-        int ans = 0;                           // 답을 저장합니다.
-        
-        while (left <= right) {                // [left, right]가 유효한 구간이면 계속 수행합니다.
-            int mid = (left + right) / 2;      // 가운데 위치를 선택합니다.
-            if(isPossible(mid)) {              // 결정문제에 대한 답이 Yes라면
-                left = mid + 1;                // 오른쪽에 조건을 만족하는 숫자가 더 있을 가능성 때문에 left를 바꿔줍니다.
-                ans = Math.max(ans, mid);      // 답의 후보들 중 최댓값을 계속 갱신해줍니다.
+        int ans = 0;
+        while(s <= e) {
+            int mid = (s + e) / 2;
+            if (mid == 0) break;
+            int cnt = 0;
+            for (int val : list) {
+                cnt += val / mid;
             }
-            else                               
-                right = mid - 1;               // 결정문제에 대한 답이 No라면 right를 바꿔줍니다.
+
+            if (cnt >= m) {
+                ans = Math.max(ans, mid);
+                s = mid + 1;
+            } else {
+                e = mid - 1;
+            }
         }
 
-        System.out.print(ans);
+        System.out.println(ans);
+
+        br.close();
     }
 }
