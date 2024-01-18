@@ -12,3 +12,6 @@ out
 *.class
 
 *.iml
+
+# venv
+venv
