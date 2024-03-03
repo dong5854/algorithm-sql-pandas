@@ -2,7 +2,7 @@ package main
 
 import "strings"
 
-func solution(s string) string {
+func JadenCase_문자열_만들기(s string) string {
 	var sb strings.Builder
 	splitted := strings.Split(s, " ")
 	for _, str := range splitted {
