@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 여행경로 {
     
     static int size;
     static Map<String, List<String>> t;

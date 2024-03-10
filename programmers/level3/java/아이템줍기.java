@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 아이템줍기 {
 
     // 상 1, 우 2, 하 3, 좌 4
     static final int[] dx = {0,0,-1,1};

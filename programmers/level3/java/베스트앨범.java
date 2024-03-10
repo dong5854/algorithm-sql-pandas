@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 베스트엘범 {
     
     Map<String, Integer> genrePlaySum = new HashMap<>();
     

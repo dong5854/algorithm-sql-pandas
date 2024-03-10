@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 가장먼노드 {
     
     static int[] v;
     static List<Integer>[] nodes;

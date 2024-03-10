@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 순위 {
     
     static Integer[][] dp;
     

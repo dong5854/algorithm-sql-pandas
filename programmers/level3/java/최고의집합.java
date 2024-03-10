@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 최고의집합 {
     public int[] solution(int n, int s) {
         if(n > s) {
             return new int[]{-1};

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {    
+class 디스크컨트롤러 {
     class Task implements Comparable<Task>{
         int startTime, taskTime;
         

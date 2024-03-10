@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 이모티콘할인행사 {
     
     static final int[] discountRate = new int[]{10, 20, 30, 40};
     

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 이중우선순위큐 {
     public int[] solution(String[] operations) {
         // val, alive (0,1)
         PriorityQueue<int[]> minQueue = new PriorityQueue<>((o1,o2) -> Integer.compare(o1[0], o2[0]));

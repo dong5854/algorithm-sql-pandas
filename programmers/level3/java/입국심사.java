@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 입국심사 {
 
     public long solution(int n, int[] times) {
         long ans = Long.MAX_VALUE;

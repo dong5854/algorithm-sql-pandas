@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 다단계칫솔판매 {
     
     static Map<String, String> referralMap;
     static Map<String, Integer> amountMap;

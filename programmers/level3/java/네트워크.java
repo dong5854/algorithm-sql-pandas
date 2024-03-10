@@ -29,7 +29,7 @@ class UnionFind {
 }
 
 
-class Solution {
+class 네트워크 {
   public int solution(int n, int[][] computers) {
       UnionFind uf = new UnionFind(n);
       for (int a = 0; a < n; a++) {

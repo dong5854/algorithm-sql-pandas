@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 정수삼각형 {
     public int solution(int[][] triangle) {
         int level = triangle.length - 1;
         

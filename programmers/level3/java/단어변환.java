@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 단어변환 {
     
     static int ans = Integer.MAX_VALUE;
     static boolean[] v;
