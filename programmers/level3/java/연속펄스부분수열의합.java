@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 연속펄스부분수열의합 {
     public long solution(int[] sequence) {
         long[] aSeq = new long[sequence.length + 1];
         long[] bSeq = new long[sequence.length + 1];
