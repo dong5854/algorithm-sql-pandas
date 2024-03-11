@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 타겟넘버 {
     
     int ans = 0;
     

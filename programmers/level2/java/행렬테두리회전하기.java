@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-class Solution {
+class 행렬테두리회전하기 {
     
     static int[][] graph;
     

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 조이스틱 {
     
     final int[] dx = {1,-1};
     int[] alphaCnt;

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class HIndex {
     public int solution(int[] citations) {
         Integer[] arr = new Integer[citations.length];
         for (int i = 0; i < citations.length; i++) {

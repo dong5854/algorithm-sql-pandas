@@ -39,7 +39,7 @@ class UnionFind {
     }
 }
 
-class Solution {
+class 전력망을둘로나누기 {
     
     int ans = Integer.MAX_VALUE;
     

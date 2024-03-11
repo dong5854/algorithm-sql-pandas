@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 피로도 {
     
     int dungeonAmt;
     int ans;

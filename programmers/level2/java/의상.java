@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 의상 {
     
     Map<String, Integer> map = new HashMap<>();
     

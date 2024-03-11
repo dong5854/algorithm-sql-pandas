@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 더맵게 {
     public int solution(int[] scoville, int K) {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
         for (int s : scoville) {

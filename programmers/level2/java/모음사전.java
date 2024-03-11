@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 모음사전 {
     
     List<String> dict = new ArrayList<>();
     final char[] vowels = {'A', 'E', 'I', 'O', 'U'};

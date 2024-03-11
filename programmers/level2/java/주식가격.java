@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 주식가격 {
     public int[] solution(int[] prices) {
         int[] answer = new int[prices.length];
         ArrayDeque<int[]> stack = new ArrayDeque<>();   // [가격, 시점]

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 시소짝궁 {
     public long solution(int[] weights) {
         long answer = 0;
 

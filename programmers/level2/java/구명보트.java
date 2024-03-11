@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 구명보트 {
     public int solution(int[] people, final int limit) {
         int answer = 0;
         Arrays.sort(people);

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 카펫 {
     public int[] solution(int brown, int yellow) {
         int sum = brown + yellow;
         double sqrt =  Math.floor(Math.sqrt(sum));

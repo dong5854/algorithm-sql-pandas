@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 올바른괄호 {
     boolean solution(String s) {
         ArrayDeque<Character> stack = new ArrayDeque<>();
         for (int i = 0; i < s.length(); i++) {

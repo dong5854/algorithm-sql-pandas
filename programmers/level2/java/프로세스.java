@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 프로세스 {
     class Document implements Comparable<Document> {
         int priority;
         boolean isTarget;

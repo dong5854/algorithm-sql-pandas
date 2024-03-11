@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class 오픈채팅방 {
     public List<String> solution(String[] record) {
         List<String> answer = new ArrayList<>();
         Map<String, String> userInfo = new HashMap<>();
