@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class CODETREE_별이있는숫자로만이동 {
 
     static int n,k;
     static int[][] board;
