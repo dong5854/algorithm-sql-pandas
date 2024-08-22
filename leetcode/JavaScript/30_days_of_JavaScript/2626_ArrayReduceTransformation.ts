@@ -6,4 +6,4 @@ function reduce(nums: number[], fn: Fn, init: number): number {
     ans = fn(ans, nums[i]);
   }
   return ans;
-};
+}
