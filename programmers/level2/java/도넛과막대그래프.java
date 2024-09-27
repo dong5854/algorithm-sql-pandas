@@ -79,3 +79,100 @@ public class 도넛과막대그래프 {
         )));
     }
 }
+
+//import java.util.*;
+//
+//class Solution {
+//
+//    Map<Integer, List<Integer>> graph; // 그래프
+//    Map<Integer, Integer> in; // 들어오는 노드
+//    Set<Integer> eightNodes; // 8자 그래프의 중심 노드
+//    boolean[] visited;
+//
+//    public int[] solution(int[][] edges) {
+//        graph = new HashMap<>();
+//        in = new HashMap<>();
+//        eightNodes = new HashSet<>();
+//        visited = new boolean[1_000_001];
+//        int[] answer = new int[4];
+//
+//        setGraph(edges);
+//
+//        // 추가된 노드 확인
+//        int out = -1;
+//        int addedNode = -1;
+//        for (Integer node: in.keySet()) {
+//            if (in.get(node).equals(0)) {
+//                if (out < graph.get(node).size()) {
+//                    out = graph.get(node).size();
+//                    addedNode = node;
+//                }
+//            }
+//            eightNodes.remove(addedNode);
+//            answer[0] = addedNode;
+//        }
+//
+//        // 8 자 그래프 개수
+//        answer[3] = eightNodes.size();
+//        for (int node : eightNodes) {
+//            checkEightVisited(node);
+//        }
+//
+//        // 도넛 그래프
+//        for (int node : graph.keySet()) {
+//            if (visited[node]) continue;
+//            if (answer[0] == node) continue;
+//            int type = getType(node, node, true);
+//            if (type == 1) {
+//                answer[1]++;
+//            } else if (type == 2) {
+//                answer[2]++;
+//            }
+//        }
+//
+//        return answer;
+//    }
+//
+//    // true 면 도넛, 아니면 일자
+//    public int getType(int node, int start, boolean isStart) {
+//        if (!isStart && node == start) return 1;
+//        if (visited[node]) return 0;
+//        visited[node] = true;
+//        if (graph.get(node).size() == 0) return 2;
+//        int ret = 0;
+//        for (int next : graph.get(node)) {
+//            ret = getType(next, start, false);
+//        }
+//        return ret;
+//    }
+//
+//    public void checkEightVisited(int node) {
+//        if (visited[node]) return;
+//        visited[node] = true;
+//        for (int next : graph.get(node)) {
+//            checkEightVisited(next);
+//        }
+//    }
+//
+//
+//    public void setGraph(int[][] edges) {
+//        for (int[] edge: edges) {
+//            int from = edge[0];
+//            int to = edge[1];
+//            if (!graph.containsKey(from)) {
+//                graph.put(from, new ArrayList<>());
+//                in.put(from, 0);
+//            }
+//            if (!graph.containsKey(to)) {
+//                graph.put(to, new ArrayList<>());
+//                in.put(to, 0);
+//            }
+//
+//            graph.get(from).add(to);
+//            in.put(to, in.get(to) + 1);
+//            if (graph.get(from).size() > 1) {
+//                eightNodes.add(from);
+//            }
+//        }
+//    }
+//}
