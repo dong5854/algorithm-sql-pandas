@@ -89,3 +89,105 @@ public class 주사위고르기 {
 
     }
 }
+
+
+//import java.util.*;
+//
+//class 주사위고르기 {
+//
+//    int diceCnt;
+//    Map<Integer, Map<Integer, Integer>> singleDice;
+//    List<Map<Integer, Integer>> combiDice;
+//    List<int[]> combiAns;
+//
+//    public int[] solution(int[][] dice) {
+//
+//        diceCnt = dice.length;
+//        singleDice = new HashMap<>();
+//        combiDice = new ArrayList<>();
+//        combiAns = new ArrayList<>();
+//
+//        // 주사위 눈금
+//        for (int i = 0; i < diceCnt; i++) {
+//            singleDice.put(i, new HashMap<>());
+//            for (int num : dice[i]) {
+//                Map<Integer, Integer> map = singleDice.get(i);
+//                map.put(num, map.getOrDefault(num, 0) + 1);
+//                singleDice.put(i, map);
+//            }
+//        }
+//
+//        // 조합별 결과값들
+//        comb(diceCnt, 0, 0, new int[diceCnt/2]);
+//
+//        int winCnt = 0;
+//        int[] answer = new int[diceCnt / 2];
+//
+//        // 제일 승률이 높은 결과
+//        for (int i = 0; i < combiAns.size() / 2; i++) {
+//            int curWin = 0;
+//            int curLose = 0;
+//            for (int a : combiDice.get(i).keySet()) {
+//                int aVal = combiDice.get(i).get(a);
+//                for (int b : combiDice.get(combiDice.size() - 1 - i).keySet()) {
+//                    int bVal = combiDice.get(combiDice.size() - 1 - i).get(b);
+//                    if (a > b) {
+//                        curWin += aVal * bVal;
+//                    } else if (b > a) {
+//                        curLose += aVal * bVal;
+//                    }
+//                }
+//            }
+//
+//            if (winCnt < curWin) {
+//                winCnt = curWin;
+//                answer = combiAns.get(i);
+//            }
+//            if (winCnt < curLose) {
+//                winCnt = curLose;
+//                answer = combiAns.get(combiAns.size() - 1 - i);
+//            }
+//        }
+//
+//
+//        // 마지막 return 해줄때 dice 번호 하나씩 올려주기
+//        return Arrays.stream(answer).map(n -> n + 1).toArray();
+//    }
+//
+//    public int[] copyArray(int[] arr) {
+//        int[] ret = new int[arr.length];
+//        for (int i = 0; i < arr.length; i++) {
+//            ret[i] = arr[i];
+//        }
+//        return ret;
+//    }
+//
+//    public void appendComb(int[] result, Map<Integer, Integer> map, int value, int amount, int cnt) {
+//        if (cnt == result.length) {
+//            map.put(value, map.getOrDefault(value, 0) + amount);
+//            return;
+//        }
+//
+//        int diceIdx = result[cnt];
+//        for (int key : singleDice.get(diceIdx).keySet()) {
+//            int val = singleDice.get(diceIdx).get(key);
+//            appendComb(result, map, value + key, amount * val, cnt + 1);
+//        }
+//
+//    }
+//
+//    public void comb(int num, int cur, int cnt, int[] result) {
+//        if (cnt == diceCnt/2) {
+//            Map<Integer, Integer> map = new HashMap<>();
+//            appendComb(result, map, 0, 1, 0);
+//            combiDice.add(map);
+//            combiAns.add(copyArray(result));
+//            return;
+//        }
+//
+//        for (int i = cur; i < num; i++) {
+//            result[cnt] = i;
+//            comb(num, i + 1, cnt + 1, result);
+//        }
+//    }
+//}
